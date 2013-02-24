@@ -1,0 +1,24 @@
+{
+  "name": "isa",
+  "version": "0.1.0",
+  "description": "type check",
+  "main": "isa.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huang47/isa.git"
+  },
+  "devDependencies": {
+    "yuidocjs": "*",
+    "mocha": "*"
+  },
+  "keywords": [
+    "is",
+    "equal",
+    "type"
+  ],
+  "author": "huang47",
+  "license": "BSD"
+}
