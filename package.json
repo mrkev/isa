@@ -1,10 +1,10 @@
 {
   "name": "isa",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "type check",
   "main": "isa.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
