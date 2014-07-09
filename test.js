@@ -13,6 +13,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.number({}));
       assert.strictEqual(false, isa.number(function() {}));
       assert.strictEqual(false, isa.number(NaN));
+      assert.strictEqual(false, isa.number(new Date()));
+      assert.strictEqual(false, isa.number(/a/i));
     });
   });
 
@@ -27,6 +29,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.string({}));
       assert.strictEqual(false, isa.string(function() {}));
       assert.strictEqual(false, isa.string(NaN));
+      assert.strictEqual(false, isa.string(new Date()));
+      assert.strictEqual(false, isa.string(/a/i));
     });
   });
 
@@ -41,6 +45,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.boolean({}));
       assert.strictEqual(false, isa.boolean(function() {}));
       assert.strictEqual(false, isa.boolean(NaN));
+      assert.strictEqual(false, isa.boolean(new Date()));
+      assert.strictEqual(false, isa.boolean(/a/i));
     });
   });
 
@@ -55,6 +61,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.null({}));
       assert.strictEqual(false, isa.null(function() {}));
       assert.strictEqual(false, isa.null(NaN));
+      assert.strictEqual(false, isa.null(new Date()));
+      assert.strictEqual(false, isa.null(/a/i));
     });
   });
 
@@ -69,6 +77,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.undefined({}));
       assert.strictEqual(false, isa.undefined(function() {}));
       assert.strictEqual(false, isa.undefined(NaN));
+      assert.strictEqual(false, isa.undefined(new Date()));
+      assert.strictEqual(false, isa.undefined(/a/i));
     });
   });
 
@@ -83,6 +93,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.array({}));
       assert.strictEqual(false, isa.array(function() {}));
       assert.strictEqual(false, isa.array(NaN));
+      assert.strictEqual(false, isa.array(new Date()));
+      assert.strictEqual(false, isa.array(/a/i));
     });
   });
 
@@ -97,6 +109,8 @@ describe('isa', function() {
       assert.strictEqual(false, isa.function({}));
       assert.strictEqual(true, isa.function(function() {}));
       assert.strictEqual(false, isa.function(NaN));
+      assert.strictEqual(false, isa.function(new Date()));
+      assert.strictEqual(false, isa.function(/a/i));
     });
   });
 
@@ -111,6 +125,53 @@ describe('isa', function() {
       assert.strictEqual(true, isa.nan({}));
       assert.strictEqual(true, isa.nan(function() {}));
       assert.strictEqual(true, isa.nan(NaN));
+      assert.strictEqual(true, isa.nan(new Date()));
+      assert.strictEqual(true, isa.nan(/a/i));
+    });
+  });
+
+  describe('object', function() {
+    it('should return true if given input is an object', function() {
+      assert.strictEqual(false, isa.object(5));
+      assert.strictEqual(false, isa.object(''));
+      assert.strictEqual(false, isa.object(false));
+      assert.strictEqual(false, isa.object(null));
+      assert.strictEqual(false, isa.object(undefined));
+      assert.strictEqual(true, isa.object({}));
+      assert.strictEqual(false, isa.object(function() {}));
+      assert.strictEqual(false, isa.object(NaN));
+    });
+  });
+
+  describe('date', function() {
+    it('should return true if given input is an date', function() {
+      assert.strictEqual(false, isa.date(5));
+      assert.strictEqual(false, isa.date(''));
+      assert.strictEqual(false, isa.date(false));
+      assert.strictEqual(false, isa.date(null));
+      assert.strictEqual(false, isa.date(undefined));
+      assert.strictEqual(false, isa.date([]));
+      assert.strictEqual(false, isa.date({}));
+      assert.strictEqual(false, isa.date(function() {}));
+      assert.strictEqual(false, isa.date(NaN));
+      assert.strictEqual(true, isa.date(new Date()));
+      assert.strictEqual(false, isa.date(/a/i));
+    });
+  });
+
+  describe('regex', function() {
+    it('should return true if given input is an regex', function() {
+      assert.strictEqual(false, isa.regex(5));
+      assert.strictEqual(false, isa.regex(''));
+      assert.strictEqual(false, isa.regex(false));
+      assert.strictEqual(false, isa.regex(null));
+      assert.strictEqual(false, isa.regex(undefined));
+      assert.strictEqual(false, isa.regex([]));
+      assert.strictEqual(false, isa.regex({}));
+      assert.strictEqual(false, isa.regex(function() {}));
+      assert.strictEqual(false, isa.regex(NaN));
+      assert.strictEqual(false, isa.regex(new Date()));
+      assert.strictEqual(true, isa.regex(/a/i));
     });
   });
 });
