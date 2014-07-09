@@ -93,7 +93,7 @@
     return Array.isArray
       ? Array.isArray(o)
       : '[object Array]' === toString.call(o);
-  }
+  };
 
   /**
    * type checking for NaN
@@ -107,7 +107,46 @@
    */
   isa.nan = isa.NaN = function(o) {
     return !this.number(o);
-  }
+  };
+
+  /**
+   * type checking for `Object`
+   *
+   * @static
+   * @method object
+   * @param  {Object} o given input
+   * @return {boolean} true if the given input is an object
+   */
+  isa.object = function(o) {
+    return !isa.null(o) && (typeof o === 'object');
+  };
+
+  /**
+   * type checking for `Date`
+   *
+   * @static
+   * @method date
+   * @param {Object} o given input
+   * @return {boolean} true if the given input is a date
+   */
+
+  /**
+   * type checking for `RegExp`
+   *
+   * @static
+   * @method regExp
+   * @alias regex
+   * @param {Object} o given input
+   * @return {boolean} true if the given input is a regexp
+   */
+  [Date, RegExp].forEach(function(constr) {
+    var name = constr.name.replace(/[d|r]/i, constr.name[0].toLowerCase());
+    isa[name] = function(o) {
+      return o instanceof constr;
+    }
+  });
+
+  isa.regex = isa.regExp;
 
   module.exports = isa;
 
