@@ -44,15 +44,6 @@
    */
 
   /**
-   * type checking for `undefined`
-   *
-   * @static
-   * @method undefined
-   * @param {Object} o given input
-   * @return {boolean} true if given input is a `undefined`
-   */
-
-  /**
    * type checking for `function`
    *
    * @static
@@ -60,7 +51,7 @@
    * @param {Object} o given input
    * @return {boolean} true if given input is a `function`
    */
-  ['string', 'boolean', 'undefined', 'function'].forEach(function(p) {
+  ['string', 'boolean', 'function'].forEach(function(p) {
     isa[p] = function(o) {
       this.name = p;
       return p === typeof o;
@@ -68,6 +59,18 @@
   });
 
   isa.bool = isa.boolean;
+  
+  /**
+   * type checking for `undefined`
+   *
+   * @static
+   * @method undefined
+   * @param {Object} o given input
+   * @return {boolean} true if given input is a `undefined`
+   */
+  isa.undefined = function(o) {
+    return void 0 === o;
+  }
 
   /**
    * type checking for `null`
